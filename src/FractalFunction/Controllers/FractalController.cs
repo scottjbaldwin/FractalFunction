@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FractalFunction.Models;
+using FractalFunction;
 
 namespace FractalFunction.Controllers
 {
@@ -12,10 +13,18 @@ namespace FractalFunction.Controllers
     public class FractalController : Controller
     {
         [HttpPost]
-        public async Task<string> Post([FromBody]FractalCreateModel fractalCreate)
+        public async Task<object> Post([FromBody]FractalCreateModel fractalCreate)
         {
+            var mandelbrot = new Mandelbrot();
             return await Task.FromResult(
-                $"Parameters passed were Iterations: {fractalCreate.Iterations} X1: {fractalCreate.BottomLeftX} Y1 {fractalCreate.BottomLeftY} X2 {fractalCreate.TopRightX} Y2 {fractalCreate.TopRightY}"
+                mandelbrot.CalculateArea(
+                    fractalCreate.Iterations,
+                    fractalCreate.BottomLeftX,
+                    fractalCreate.BottomLeftY,
+                    fractalCreate.TopRightX,
+                    fractalCreate.TopRightY,
+                    1000,
+                    1000)
             );
         }
     }

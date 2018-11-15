@@ -33,9 +33,9 @@ Param(
     [Parameter()]
     [int] $Iterations=1000,
     [Parameter()]
-    [double] $BottomLeftX=0.0,
+    [double] $BottomLeftX=-1.0,
     [Parameter()]
-    [double] $BottomLeftY=0.0,
+    [double] $BottomLeftY=-1.0,
     [Parameter()]
     [double] $TopRightX=1.0,
     [Parameter()]
