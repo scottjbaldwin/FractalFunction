@@ -29,7 +29,7 @@ The y coordinate of the top right point to end the fractal
 #>
 Param(
     [Parameter()]
-    [string] $BaseUri="http://localhost:5000",
+    [string] $BaseUri="https://localhost:5001",
     [Parameter()]
     [int] $Iterations=1000,
     [Parameter()]
@@ -42,8 +42,13 @@ Param(
     [double] $TopRightY=1.0
 )
 
-$fractalCreate = @{"Iterations"=$Iterations;"BottomLeftX"=$BottomLeftX;"BottomLeftY"=$BottomLeftY;"TopRightX"=$TopRightX;"TopRightY"=$TopRightY}
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$fractalCreate = @{"Iterations"="$Iterations";"BottomLeftX"="$BottomLeftX";"BottomLeftY"="$BottomLeftY";"TopRightX"="$TopRightX";"TopRightY"="$TopRightY"}
 
-$result = Invoke-WebRequest -Uri ($BaseUri + "/api/fractal") -Method POST -Body ($fractalCreate | ConvertTo-Json) -ContentType "application/json"
+$json = $fractalCreate | ConvertTo-Json
+
+Write-Host $json
+
+$result = Invoke-WebRequest -Uri ($BaseUri + "/api/fractal") -Method POST -Body $json -ContentType "application/json"
 
 $result
