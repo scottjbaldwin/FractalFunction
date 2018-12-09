@@ -28,8 +28,8 @@ namespace FractalFunction.Controllers
                     fractalCreate.BottomLeftY,
                     fractalCreate.TopRightX,
                     fractalCreate.TopRightY,
-                    1000,
-                    1000)
+                    fractalCreate.Steps,
+                    fractalCreate.Steps)
             );
         }
     }

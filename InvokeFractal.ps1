@@ -39,11 +39,13 @@ Param(
     [Parameter()]
     [double] $TopRightX=1.0,
     [Parameter()]
-    [double] $TopRightY=1.0
+    [double] $TopRightY=1.0,
+    [Parameter()]
+    [int] $Steps=1000
 )
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-$fractalCreate = @{"Iterations"="$Iterations";"BottomLeftX"="$BottomLeftX";"BottomLeftY"="$BottomLeftY";"TopRightX"="$TopRightX";"TopRightY"="$TopRightY"}
+$fractalCreate = @{"Iterations"="$Iterations";"BottomLeftX"="$BottomLeftX";"BottomLeftY"="$BottomLeftY";"TopRightX"="$TopRightX";"TopRightY"="$TopRightY";"Steps"="$Steps"}
 
 $json = $fractalCreate | ConvertTo-Json
 

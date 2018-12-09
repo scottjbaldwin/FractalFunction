@@ -7,5 +7,6 @@ namespace FractalFunction.Models
         public double BottomLeftY { get; set; }
         public double TopRightX { get; set; }
         public double TopRightY { get; set; }
+        public int Steps {get; set;}
     }
 }
